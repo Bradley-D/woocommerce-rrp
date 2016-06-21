@@ -3,7 +3,7 @@ Contributors: Brad-Davis
 Tags: woocommerce, woocommerce-price, wc-admin, woocommerce-admin, woocommerce-product-settings, admin, wp-admin, wordpress-admin
 Requires at least: 4.0
 Tested up to: 4.0
-Stable tag: 1.0
+Stable tag: 1.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -85,6 +85,9 @@ No, You will need to tidy this up yourself using a little CSS styling.
 6. Here you can see the arrows pointing to the text entered in "Product Price Text" and "Sale Price Text" on an archive.
 
 == Changelog ==
+
+= 1.1 =
+* Added conditional check to price so text only shows if price is not empty
 
 = 1.0 =
 * Original commit and released to the world

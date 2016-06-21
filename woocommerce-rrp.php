@@ -3,7 +3,7 @@
 Plugin Name: WooCommerce RRP
 Plugin URI: http://bradley-davis.com/wordpress-plugins/woocommerce-rrp/
 Description: WooCommerce RRP allows users to add text before the regular price and sale price of a product from within WooCommerce General settings.
-Version: 1.0
+Version: 1.1
 Author: Bradley Davis
 Author URI: http://bradley-davis.com
 License: GPL3
@@ -68,7 +68,7 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
 				$woo_rrp_update = array();
 
 			  foreach ( $settings as $section ) :
-			    if ( isset( $section['id'] ) && 'pricing_options' == $section['id'] && isset( $section['type'] ) && 'sectionend' == $section['type'] ) :    	
+			    if ( isset( $section['id'] ) && 'pricing_options' == $section['id'] && isset( $section['type'] ) && 'sectionend' == $section['type'] ) :
 			      $woo_rrp_update[] = array(
 			        'name'     => __( 'Product Price Text', 'woocommerce-rrp' ), // WC < 2.0
 			        'title'    => __( 'Product Price Text', 'woocommerce-rrp' ), // WC >= 2.0
@@ -118,38 +118,42 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
 				$woo_rrp_before_sale_price = apply_filters( 'woo_rrp_before_sale_price', get_option( 'woo_rrp_before_sale_price', 1 ) ) . '&nbsp;';
 				$woo_rrp_archive_option = get_option( 'woo_rrp_archive_option', 1 );
 
-				// Enable archive template display selected
-				if ( 'yes' === $woo_rrp_archive_option ) :
-					// Product is on sale
-					if ( $product->is_on_sale() ) :
-						$woo_rrp_replace = array(
-							'<del>' => '<del>' . $woo_rrp_before_price,
-							'<ins>' => '<br>' . $woo_rrp_before_sale_price . '<ins>'
-						);
-						$string_return = str_replace(array_keys( $woo_rrp_replace ), array_values( $woo_rrp_replace ), $price);
-					// Product is not on sale
+				// Check $price is not EmptyIterato
+				if ( $price != '' ) :
+					// Enable archive template display selected
+					if ( 'yes' === $woo_rrp_archive_option ) :
+						// Product is on sale
+						if ( $product->is_on_sale() ) :
+							$woo_rrp_replace = array(
+								'<del>' => '<del>' . $woo_rrp_before_price,
+								'<ins>' => '<br>' . $woo_rrp_before_sale_price . '<ins>'
+							);
+							$string_return = str_replace(array_keys( $woo_rrp_replace ), array_values( $woo_rrp_replace ), $price);
+						// Product is not on sale
+						else :
+							$string_return = $woo_rrp_before_price . $price;
+						endif;
+					// Single product display only
 					else :
-						$string_return = $woo_rrp_before_price . $price;
-					endif;
-				// Single product display only
-				else :
-					// Is single product and is on sale
-					if ( is_product() && $product->is_on_sale() ) :
-						$woo_rrp_replace = array(
-							'<del>' => '<del>' . $woo_rrp_before_price,
-							'<ins>' => '<br>' . $woo_rrp_before_sale_price . '<ins>'
-						);
-						$string_return = str_replace(array_keys( $woo_rrp_replace ), array_values( $woo_rrp_replace ), $price);
-					// Single product
-					elseif ( is_product() ) :
-						$string_return = $woo_rrp_before_price . $price;
-					// Return price without additional text on all other instances
-					else :
-						$string_return = $price;
-					endif;
+						// Is single product and is on sale
+						if ( is_product() && $product->is_on_sale() ) :
+							$woo_rrp_replace = array(
+								'<del>' => '<del>' . $woo_rrp_before_price,
+								'<ins>' => '<br>' . $woo_rrp_before_sale_price . '<ins>'
+							);
+							$string_return = str_replace(array_keys( $woo_rrp_replace ), array_values( $woo_rrp_replace ), $price);
+						// Single product
+						elseif ( is_product() ) :
+							$string_return = $woo_rrp_before_price . $price;
+						// Return price without additional text on all other instances
+						else :
+							$string_return = $price;
+						endif;
 
+					endif;
+					return $string_return;
+					
 				endif;
-				return $string_return;
 			}
 		} // END class Woo_RRP
 
