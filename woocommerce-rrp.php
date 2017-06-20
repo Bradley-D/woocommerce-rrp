@@ -3,7 +3,7 @@
 Plugin Name: WooCommerce RRP
 Plugin URI: http://bradley-davis.com/wordpress-plugins/woocommerce-rrp/
 Description: WooCommerce RRP allows users to add text before the regular price and sale price of a product from within WooCommerce General settings.
-Version: 1.1
+Version: 1.2
 Author: Bradley Davis
 Author URI: http://bradley-davis.com
 License: GPL3
@@ -114,8 +114,8 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
 			 */
 			public function woo_rrp_price_html( $price, $product ) {
 				// Let's get the data we entered in the WC UI
-				$woo_rrp_before_price = apply_filters( 'woo_rrp_before_price', get_option( 'woo_rrp_before_price', 1 ) ) . '&nbsp;';
-				$woo_rrp_before_sale_price = apply_filters( 'woo_rrp_before_sale_price', get_option( 'woo_rrp_before_sale_price', 1 ) ) . '&nbsp;';
+				$woo_rrp_before_price = apply_filters( 'woo_rrp_before_price', get_option( 'woo_rrp_before_price', 1 ) ) . ' ';
+				$woo_rrp_before_sale_price = apply_filters( 'woo_rrp_before_sale_price', get_option( 'woo_rrp_before_sale_price', 1 ) ) . ' ';
 				$woo_rrp_archive_option = get_option( 'woo_rrp_archive_option', 1 );
 
 				// Check $price is not EmptyIterato
@@ -152,7 +152,7 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
 
 					endif;
 					return $string_return;
-					
+
 				endif;
 			}
 		} // END class Woo_RRP
