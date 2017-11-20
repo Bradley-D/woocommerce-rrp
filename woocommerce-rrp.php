@@ -3,12 +3,14 @@
 Plugin Name: WooCommerce RRP
 Plugin URI: http://bradley-davis.com/wordpress-plugins/woocommerce-rrp/
 Description: WooCommerce RRP allows users to add text before the regular price and sale price of a product from within WooCommerce General settings.
-Version: 1.2
+Version: 1.4
 Author: Bradley Davis
 Author URI: http://bradley-davis.com
 License: GPL3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 Text Domain: woocommerce-rrp
+WC requires at least: 3.0.0
+WC tested up to: 3.2.4
 
 @author		 Bradley Davis
 @category  Admin
@@ -125,26 +127,26 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
 						// Product is on sale
 						if ( $product->is_on_sale() ) :
 							$woo_rrp_replace = array(
-								'<del>' => '<del>' . $woo_rrp_before_price,
-								'<ins>' => '<br>' . $woo_rrp_before_sale_price . '<ins>'
+								'<del>' => '<del><span class="rrp-price">' . $woo_rrp_before_price . '</span>',
+								'<ins>' => '<br><span class="rrp-sale">' . $woo_rrp_before_sale_price . '</span><ins>'
 							);
 							$string_return = str_replace(array_keys( $woo_rrp_replace ), array_values( $woo_rrp_replace ), $price);
 						// Product is not on sale
 						else :
-							$string_return = $woo_rrp_before_price . $price;
+							$string_return = '<span class="rrp-price">' . $woo_rrp_before_price . '</span>' . $price;
 						endif;
 					// Single product display only
 					else :
 						// Is single product and is on sale
 						if ( is_product() && $product->is_on_sale() ) :
 							$woo_rrp_replace = array(
-								'<del>' => '<del>' . $woo_rrp_before_price,
-								'<ins>' => '<br>' . $woo_rrp_before_sale_price . '<ins>'
+								'<del>' => '<del><span class="rrp-price">' . $woo_rrp_before_price . '</span>',
+								'<ins>' => '<br><span class="rrp-sale">' . $woo_rrp_before_sale_price . '</span><ins>'
 							);
 							$string_return = str_replace(array_keys( $woo_rrp_replace ), array_values( $woo_rrp_replace ), $price);
 						// Single product
 						elseif ( is_product() ) :
-							$string_return = $woo_rrp_before_price . $price;
+							$string_return = '<span class="rrp-price">' . $woo_rrp_before_price . '</span>' . $price;
 						// Return price without additional text on all other instances
 						else :
 							$string_return = $price;

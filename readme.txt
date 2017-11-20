@@ -2,8 +2,8 @@
 Contributors: Brad Davis
 Tags: woocommerce, woocommerce-price, wc-admin, woocommerce-admin, woocommerce-product-settings, admin, wp-admin, wordpress-admin
 Requires at least: 4.0
-Tested up to: 4.8
-Stable tag: 1.2
+Tested up to: 4.9
+Stable tag: 1.4
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -22,7 +22,7 @@ If you have suggestions for new features, please add your idea in the "Support" 
 If WooCommerce RRP has made your life a little easier, please leave a positive review in the "Reviews" area for this plugin.
 
 = Requires WooCommerce to be installed. =
-= WooCommerce Compatibility Test: v3.0.8 =
+= WooCommerce Compatibility Test: v3.2.4  =
 
 == Installation ==
 
@@ -86,6 +86,17 @@ No, You will need to tidy this up yourself using a little CSS styling.
 6. Here you can see the arrows pointing to the text entered in "Product Price Text" and "Sale Price Text" on an archive.
 
 == Changelog ==
+
+= 1.4 =
+* Tested on WordPress 4.9
+* Tested on WooCommerce 3.2.4
+* Added span with class="rrp-price" around before price string
+* Added span with class="rrp-sale" around before sale price string
+
+= 1.3 =
+* Tested on WordPress 4.8.2
+* Tested on WooCommerce 3.2.1
+* Add WooCommerce header version check
 
 = 1.2 =
 * Tested on WordPress 4.8
