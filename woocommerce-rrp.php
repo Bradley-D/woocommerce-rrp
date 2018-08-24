@@ -3,14 +3,15 @@
 Plugin Name: WooCommerce RRP
 Plugin URI: http://bradley-davis.com/wordpress-plugins/woocommerce-rrp/
 Description: WooCommerce RRP allows users to add text before the regular price and sale price of a product from within WooCommerce General settings.
-Version: 1.5
+Version: 1.6
 Author: Bradley Davis
 Author URI: http://bradley-davis.com
 License: GPL3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 Text Domain: woocommerce-rrp
+Domain Path: /languages
 WC requires at least: 3.0.0
-WC tested up to: 3.4.1
+WC tested up to: 3.4.4
 
 @author		 Bradley Davis
 @category  Admin
@@ -56,10 +57,19 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
 			 */
 			public function __construct() {
 				if ( ! is_admin() ) :
-					add_filter( 'woocommerce_get_price_html', array( &$this, 'woo_rrp_price_html' ), 100, 2 );
+					add_filter( 'woocommerce_get_price_html', array( $this, 'woo_rrp_price_html' ), 100, 2 );
 				endif;
-				add_filter( 'woocommerce_general_settings', array( &$this, 'woo_rrp_input' ), 100, 1 );
+				add_filter( 'woocommerce_general_settings', array( $this, 'woo_rrp_input' ), 100, 1 );
+				add_action( 'plugins_loaded', array( $this, 'woo_rrp_plugin_textdomain' ) );
 			}
+
+			/**
+			 * Load the languages directory for translations
+			 * @since 1.6
+			 */
+			 public function woo_rrp_plugin_textdomain() {
+				 load_plugin_textdomain( 'woocommerce-rrp', FALSE, plugin_dir_path( __FILE__ ) . 'languages/' );
+			 }
 
 			/**
 			 * Create and add input fields to the WooCommerce UI
@@ -127,26 +137,26 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
 						// Product is on sale
 						if ( $product->is_on_sale() ) :
 							$woo_rrp_replace = array(
-								'<del>' => '<del><span class="rrp-price">' . $woo_rrp_before_price . '</span>',
-								'<ins>' => '<br><span class="rrp-sale">' . $woo_rrp_before_sale_price . '</span><ins>'
+								'<del>' => '<del><span class="rrp-price">' . esc_attr_x( $woo_rrp_before_price, 'woocommerce-rrp' ) . '</span>',
+								'<ins>' => '<br><span class="rrp-sale">' . esc_attr_x( $woo_rrp_before_sale_price, 'woocommerce-rrp' ) . '</span><ins>'
 							);
 							$string_return = str_replace(array_keys( $woo_rrp_replace ), array_values( $woo_rrp_replace ), $price);
 						// Product is not on sale
 						else :
-							$string_return = '<span class="rrp-price">' . $woo_rrp_before_price . '</span>' . $price;
+							$string_return = '<span class="rrp-price">' . esc_attr_x( $woo_rrp_before_price, 'woocommerce-rrp' ) . '</span>' . $price;
 						endif;
 					// Single product display only
 					else :
 						// Is single product and is on sale
 						if ( is_product() && $product->is_on_sale() ) :
 							$woo_rrp_replace = array(
-								'<del>' => '<del><span class="rrp-price">' . $woo_rrp_before_price . '</span>',
-								'<ins>' => '<br><span class="rrp-sale">' . $woo_rrp_before_sale_price . '</span><ins>'
+								'<del>' => '<del><span class="rrp-price">' . esc_attr_x( $woo_rrp_before_price, 'woocommerce-rrp' ) . '</span>',
+								'<ins>' => '<br><span class="rrp-sale">' . esc_attr_x( $woo_rrp_before_sale_price , 'woocommerce-rrp' ) . '</span><ins>'
 							);
 							$string_return = str_replace(array_keys( $woo_rrp_replace ), array_values( $woo_rrp_replace ), $price);
 						// Single product
 						elseif ( is_product() ) :
-							$string_return = '<span class="rrp-price">' . $woo_rrp_before_price . '</span>' . $price;
+							$string_return = '<span class="rrp-price">' . esc_attr_x( $woo_rrp_before_price, 'woocommerce-rrp' ) . '</span>' . $price;
 						// Return price without additional text on all other instances
 						else :
 							$string_return = $price;
