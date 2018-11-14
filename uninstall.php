@@ -2,6 +2,7 @@
 /**
  * Delete RRP data if uninstalled.
  *
+ * @package WooCommerce RRP
  * @since 1.0
  */
 
