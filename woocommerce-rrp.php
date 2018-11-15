@@ -41,15 +41,21 @@ endif;
  * @since 1.0
  */
 if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ), true ) ) :
+	/**
+	 * WooCommerce is installed so it is time to make it all happen.
+	 */
 	woo_rrp_require();
 endif;
 
 /**
- * Add in the public and admin parent files
+ * Add in the includes, public and admin parent files
  *
  * @since 2.0.0
  */
 function woo_rrp_require() {
-	require_once plugin_dir_path( __FILE__ ) . 'admin/class-woocommerce-rrp-admin.php';
-	require_once plugin_dir_path( __FILE__ ) . 'public/class-woocommerce-rrp-public.php';
+	/**
+	 * The class responsible for bringing all the includes, admin and public
+	 * functionality together.
+	 */
+	require_once plugin_dir_path( __FILE__ ) . 'includes/class-woocommerce-rrp.php';
 }

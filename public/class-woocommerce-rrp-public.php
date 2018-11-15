@@ -28,7 +28,7 @@ class WooCommerce_RRP_Public {
 	}
 
 	/**
-	 * Inclide all the required public partials.
+	 * Include all the required public partials.
 	 *
 	 * @since 2.0.0
 	 */
