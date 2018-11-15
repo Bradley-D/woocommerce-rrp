@@ -50,6 +50,7 @@ endif;
 	 * @since 2.0.0
 	 */
 	function woo_rrp_require() {
+		require_once plugin_dir_path( __FILE__ ) . 'admin/class-woocommerce-rrp-admin.php';
 		require_once plugin_dir_path( __FILE__ ) . 'public/class-woocommerce-rrp-public.php';
 	}
 
