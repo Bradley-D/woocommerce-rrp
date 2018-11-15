@@ -24,7 +24,18 @@ class WooCommerce_RRP_Render_Single_Product {
 	 * @since 2.0.0
 	 */
 	public function __construct() {
-		$this->woo_rrp_price_html();
+		$this->woo_rrp_public_single_activate();
+	}
+
+	/**
+	 * Add all filter type actions.
+	 *
+	 * @since 2.0
+	 */
+	public function woo_rrp_public_single_activate() {
+		if ( ! is_admin() ) :
+			add_filter( 'woocommerce_get_price_html', array( $this, 'woo_rrp_price_html' ), 100, 2 );
+		endif;
 	}
 
 	/**
@@ -34,57 +45,56 @@ class WooCommerce_RRP_Render_Single_Product {
 	 * @param int   $price Allows access to the product price.
 	 * @param mixed $product Allows access to product object.
 	 */
-	//$price, $product
-	public function woo_rrp_price_html( ) {
-		// // Let's get the data we entered in the WC UI.
-		// $woo_rrp_before_price      = apply_filters( 'woo_rrp_before_price', get_option( 'woo_rrp_before_price', 1 ) ) . ' ';
-		// $woo_rrp_before_sale_price = apply_filters( 'woo_rrp_before_sale_price', get_option( 'woo_rrp_before_sale_price', 1 ) ) . ' ';
-		// $woo_rrp_archive_option    = get_option( 'woo_rrp_archive_option', 1 );
+	public function woo_rrp_price_html( $price, $product ) {
+		// Let's get the data we entered in the WC UI.
+		$woo_rrp_before_price      = apply_filters( 'woo_rrp_before_price', get_option( 'woo_rrp_before_price', 1 ) ) . ' ';
+		$woo_rrp_before_sale_price = apply_filters( 'woo_rrp_before_sale_price', get_option( 'woo_rrp_before_sale_price', 1 ) ) . ' ';
+		$woo_rrp_archive_option    = get_option( 'woo_rrp_archive_option', 1 );
 
-		// // Check $price is not empty.
-		// if ( '' !== $price ) :
+		// Check $price is not empty.
+		if ( '' !== $price ) :
 
-		// 	if ( 'yes' === $woo_rrp_archive_option ) : // Enable archive template display selected.
+			if ( 'yes' === $woo_rrp_archive_option ) : // Enable archive template display selected.
 
-		// 		if ( $product->is_on_sale() ) : // Product is on sale.
-		// 			$woo_rrp_replace = array(
-		// 				'<del>' => '<del><span class="rrp-price">' . esc_attr_x( $woo_rrp_before_price, 'woocommerce-rrp' ) . '</span>',
-		// 				'<ins>' => '<br><span class="rrp-sale">' . esc_attr_x( $woo_rrp_before_sale_price, 'woocommerce-rrp' ) . '</span><ins>',
-		// 			);
+				if ( $product->is_on_sale() ) : // Product is on sale.
+					$woo_rrp_replace = array(
+						'<del>' => '<del><span class="rrp-price">' . esc_attr_x( $woo_rrp_before_price, 'woocommerce-rrp' ) . '</span>',
+						'<ins>' => '<br><span class="rrp-sale">' . esc_attr_x( $woo_rrp_before_sale_price, 'woocommerce-rrp' ) . '</span><ins>',
+					);
 
-		// 			$string_return = str_replace( array_keys( $woo_rrp_replace ), array_values( $woo_rrp_replace ), $price );
+					$string_return = str_replace( array_keys( $woo_rrp_replace ), array_values( $woo_rrp_replace ), $price );
 
-		// 		else : // Product is not on sale.
+				else : // Product is not on sale.
 
-		// 			$string_return = '<span class="rrp-price">' . esc_attr_x( $woo_rrp_before_price, 'woocommerce-rrp' ) . '</span>' . $price;
+					$string_return = '<span class="rrp-price">' . esc_attr_x( $woo_rrp_before_price, 'woocommerce-rrp' ) . '</span>' . $price;
 
-		// 		endif;
+				endif;
 
-		// 	else : // Single product display only.
+			else : // Single product display only.
 
-		// 		if ( is_product() && $product->is_on_sale() ) : // Is single product and is on sale.
-		// 			$woo_rrp_replace = array(
-		// 				'<del>' => '<del><span class="rrp-price">' . esc_attr_x( $woo_rrp_before_price, 'woocommerce-rrp' ) . '</span>',
-		// 				'<ins>' => '<br><span class="rrp-sale">' . esc_attr_x( $woo_rrp_before_sale_price, 'woocommerce-rrp' ) . '</span><ins>',
-		// 			);
+				if ( is_product() && $product->is_on_sale() ) : // Is single product and is on sale.
+					$woo_rrp_replace = array(
+						'<del>' => '<del><span class="rrp-price">' . esc_attr_x( $woo_rrp_before_price, 'woocommerce-rrp' ) . '</span>',
+						'<ins>' => '<br><span class="rrp-sale">' . esc_attr_x( $woo_rrp_before_sale_price, 'woocommerce-rrp' ) . '</span><ins>',
+					);
 
-		// 			$string_return = str_replace( array_keys( $woo_rrp_replace ), array_values( $woo_rrp_replace ), $price );
+					$string_return = str_replace( array_keys( $woo_rrp_replace ), array_values( $woo_rrp_replace ), $price );
 
-		// 		elseif ( is_product() ) : // Single product.
+				elseif ( is_product() ) : // Single product.
 
-		// 			$string_return = '<span class="rrp-price">' . esc_attr_x( $woo_rrp_before_price, 'woocommerce-rrp' ) . '</span>' . $price;
+					$string_return = '<span class="rrp-price">' . esc_attr_x( $woo_rrp_before_price, 'woocommerce-rrp' ) . '</span>' . $price;
 
-		// 		else : // Return price without additional text on all other instances.
+				else : // Return price without additional text on all other instances.
 
-		// 			$string_return = $price;
+					$string_return = $price;
 
-		// 		endif;
+				endif;
 
-		// 	endif;
+			endif;
 
-		// 	return $string_return;
+			return $string_return;
 
-		// endif;
+		endif;
 	}
 }
 

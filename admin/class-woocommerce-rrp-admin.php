@@ -33,7 +33,17 @@ class WooCommerce_RRP_Admin {
 	 * @since 2.0
 	 */
 	public function woo_rrp_admin_activate() {
+		add_action( 'plugins_loaded', array( $this, 'woo_rrp_plugin_textdomain' ) );
 		add_filter( 'woocommerce_general_settings', array( $this, 'woo_rrp_input' ), 100, 1 );
+	}
+
+	/**
+	 * Load the languages directory for translations.
+	 *
+	 * @since 1.6
+	 */
+	public function woo_rrp_plugin_textdomain() {
+		load_plugin_textdomain( 'woocommerce-rrp', false, trailingslashit( dirname( plugin_basename( __FILE__ ) ) ) . 'languages' );
 	}
 
 	/**
