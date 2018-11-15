@@ -45,7 +45,7 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
 endif;
 
 /**
- * Undocumented function
+ * Add in the public and admin parent files
  *
  * @since 2.0.0
  */

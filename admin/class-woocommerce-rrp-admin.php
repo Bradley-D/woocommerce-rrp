@@ -103,4 +103,9 @@ class WooCommerce_RRP_Admin {
 	}
 }
 
+/**
+ * Instantiate the class
+ *
+ * @since 2.0.0
+ */
 $woocommerce_rrp_admin = new WooCommerce_RRP_Admin();
