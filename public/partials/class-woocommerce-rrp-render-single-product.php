@@ -58,15 +58,15 @@ class WooCommerce_RRP_Render_Single_Product {
 
 				if ( $product->is_on_sale() ) : // Product is on sale.
 					$woo_rrp_replace = array(
-						'<del>' => '<del><span class="rrp-price">' . esc_attr_x( $woo_rrp_before_price, 'woocommerce-rrp' ) . '</span>',
-						'<ins>' => '<br><span class="rrp-sale">' . esc_attr_x( $woo_rrp_before_sale_price, 'woocommerce-rrp' ) . '</span><ins>',
+						'<del>' => '<del><span class="rrp-price">' . esc_attr( $woo_rrp_before_price, 'woocommerce-rrp' ) . '</span>',
+						'<ins>' => '<br><span class="rrp-sale">' . esc_attr( $woo_rrp_before_sale_price, 'woocommerce-rrp' ) . '</span><ins>',
 					);
 
 					$string_return = str_replace( array_keys( $woo_rrp_replace ), array_values( $woo_rrp_replace ), $price );
 
 				else : // Product is not on sale.
 
-					$string_return = '<span class="rrp-price">' . esc_attr_x( $woo_rrp_before_price, 'woocommerce-rrp' ) . '</span>' . $price;
+					$string_return = '<span class="rrp-price">' . esc_attr( $woo_rrp_before_price, 'woocommerce-rrp' ) . '</span>' . $price;
 
 				endif;
 
@@ -74,15 +74,15 @@ class WooCommerce_RRP_Render_Single_Product {
 
 				if ( is_product() && $product->is_on_sale() ) : // Is single product and is on sale.
 					$woo_rrp_replace = array(
-						'<del>' => '<del><span class="rrp-price">' . esc_attr_x( $woo_rrp_before_price, 'woocommerce-rrp' ) . '</span>',
-						'<ins>' => '<br><span class="rrp-sale">' . esc_attr_x( $woo_rrp_before_sale_price, 'woocommerce-rrp' ) . '</span><ins>',
+						'<del>' => '<del><span class="rrp-price">' . esc_attr( $woo_rrp_before_price, 'woocommerce-rrp' ) . '</span>',
+						'<ins>' => '<br><span class="rrp-sale">' . esc_attr( $woo_rrp_before_sale_price, 'woocommerce-rrp' ) . '</span><ins>',
 					);
 
 					$string_return = str_replace( array_keys( $woo_rrp_replace ), array_values( $woo_rrp_replace ), $price );
 
 				elseif ( is_product() ) : // Single product.
 
-					$string_return = '<span class="rrp-price">' . esc_attr_x( $woo_rrp_before_price, 'woocommerce-rrp' ) . '</span>' . $price;
+					$string_return = '<span class="rrp-price">' . esc_attr( $woo_rrp_before_price, 'woocommerce-rrp' ) . '</span>' . $price;
 
 				else : // Return price without additional text on all other instances.
 
