@@ -49,6 +49,7 @@ class WooCommerce_RRP_Admin {
 		foreach ( $settings as $section ) :
 
 			if ( isset( $section['id'] ) && 'pricing_options' === $section['id'] && isset( $section['type'] ) && 'sectionend' === $section['type'] ) :
+
 				$woo_rrp_update[] = array(
 					'name'     => __( 'Product Price Text', 'woocommerce-rrp' ), // WC < 2.0.
 					'title'    => __( 'Product Price Text', 'woocommerce-rrp' ), // WC >= 2.0.
