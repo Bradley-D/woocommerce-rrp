@@ -33,6 +33,7 @@ class WooCommerce_RRP_Public {
 	 * @since 2.0.0
 	 */
 	public function woo_rrp_public_require() {
+		require_once 'partials/class-woocommerce-rrp-render-category.php';
 		require_once 'partials/class-woocommerce-rrp-render-single-product.php';
 	}
 }

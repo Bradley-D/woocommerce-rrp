@@ -1,6 +1,6 @@
 <?php
 /**
- * Renders the rrp output on a single product.
+ * Renders the rrp output on a category.
  *
  * @author     Bradley Davis
  * @package    WooCommerce_RRP
@@ -17,14 +17,14 @@ endif;
  *
  * @since 2.0.0
  */
-class WooCommerce_RRP_Render_Single_Product {
+class WooCommerce_RRP_Render_Category {
 	/**
 	 * The Constructor.
 	 *
 	 * @since 2.0.0
 	 */
 	public function __construct() {
-		$this->woo_rrp_public_single_activate();
+		$this->woo_rrp_public_category_activate();
 	}
 
 	/**
@@ -32,20 +32,20 @@ class WooCommerce_RRP_Render_Single_Product {
 	 *
 	 * @since 2.0
 	 */
-	public function woo_rrp_public_single_activate() {
+	public function woo_rrp_public_category_activate() {
 		if ( ! is_admin() ) :
-			add_filter( 'woocommerce_get_price_html', array( $this, 'woo_rrp_price_html_single' ), 100, 2 );
+			add_filter( 'woocommerce_get_price_html', array( $this, 'woo_rrp_price_html_category' ), 100, 2 );
 		endif;
 	}
 
 	/**
-	 * Output the field values to the product price on the front end.
+	 * Output the field values to the category on the front end.
 	 *
 	 * @since 1.0
 	 * @param int   $price Allows access to the product price.
 	 * @param mixed $product Allows access to product object.
 	 */
-	public function woo_rrp_price_html_single( $price, $product ) {
+	public function woo_rrp_price_html_category( $price, $product ) {
 		// The data we need to output from the data entered in the WC UI.
 		$woo_rrp_before_price      = apply_filters( 'woo_rrp_before_price', get_option( 'woo_rrp_before_price', 1 ) ) . ' ';
 		$woo_rrp_before_sale_price = apply_filters( 'woo_rrp_before_sale_price', get_option( 'woo_rrp_before_sale_price', 1 ) ) . ' ';
@@ -53,21 +53,21 @@ class WooCommerce_RRP_Render_Single_Product {
 
 		if ( '' !== $price ) :
 
-			if ( is_product() && $product->is_on_sale() ) :
-				$woo_rrp_replace = array(
-					'<del>' => '<del><span class="rrp-price">' . esc_attr( $woo_rrp_before_price, 'woocommerce-rrp' ) . '</span>',
-					'<ins>' => '<br><span class="rrp-sale">' . esc_attr( $woo_rrp_before_sale_price, 'woocommerce-rrp' ) . '</span><ins>',
-				);
+			if ( 'yes' === $woo_rrp_archive_option && is_product_category() ) :
 
-				$price = str_replace( array_keys( $woo_rrp_replace ), array_values( $woo_rrp_replace ), $price );
+				if ( $product->is_on_sale() ) :
+					$woo_rrp_replace = array(
+						'<del>' => '<del><span class="rrp-price">' . esc_attr( $woo_rrp_before_price, 'woocommerce-rrp' ) . '</span>',
+						'<ins>' => '<br><span class="rrp-sale">' . esc_attr( $woo_rrp_before_sale_price, 'woocommerce-rrp' ) . '</span><ins>',
+					);
 
-			elseif ( is_product() ) :
+					$price = str_replace( array_keys( $woo_rrp_replace ), array_values( $woo_rrp_replace ), $price );
 
-				$price = '<span class="rrp-price">' . esc_attr( $woo_rrp_before_price, 'woocommerce-rrp' ) . '</span>' . $price;
+				else :
 
-			else :
+					$price = '<span class="rrp-price">' . esc_attr( $woo_rrp_before_price, 'woocommerce-rrp' ) . '</span>' . $price;
 
-				$price = $price;
+				endif;
 
 			endif;
 
@@ -82,4 +82,4 @@ class WooCommerce_RRP_Render_Single_Product {
  *
  * @since 2.0.0
  */
-$woocommerce_rrp_render_single_product = new WooCommerce_RRP_Render_Single_Product();
+$woocommerce_rrp_render_category = new WooCommerce_RRP_Render_Category();

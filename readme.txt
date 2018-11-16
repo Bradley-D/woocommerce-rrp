@@ -22,7 +22,6 @@ If you have suggestions for new features, please add your idea in the "Support" 
 If WooCommerce RRP has made your life a little easier, please leave a positive review in the "Reviews" area for this plugin.
 
 = Requires WooCommerce to be installed. =
-= WooCommerce Compatibility Test: v3.5.1  =
 
 == Installation ==
 
@@ -89,8 +88,8 @@ No, You will need to tidy this up yourself using a little CSS styling.
 
 = 2.0.0 =
 * WPCS refactor
-* Tested on WordPress
-* Tested on WooCommerce
+* Tested on WordPress 4.9.8
+* Tested on WooCommerce 3.5.1
 
 = 1.6 =
 * Added translation functions on user input strings
