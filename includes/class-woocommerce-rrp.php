@@ -5,7 +5,7 @@
  * @author     Bradley Davis
  * @package    WooCommerce_RRP
  * @subpackage WooCommerce_RRP/includes
- * @since      2.0.0
+ * @since      1.7.0
  */
 
 if ( ! defined( 'ABSPATH' ) ) :
@@ -22,7 +22,7 @@ class WooCommerce_RRP {
 	/**
 	 * The Constructor.
 	 *
-	 * @since 2.0
+	 * @since 1.7.0
 	 */
 	public function __construct() {
 		$this->woo_rrp_includes_require();
@@ -31,7 +31,7 @@ class WooCommerce_RRP {
 	/**
 	 * Include all the required include partials.
 	 *
-	 * @since 2.0.0
+	 * @since 1.7.0
 	 */
 	public function woo_rrp_includes_require() {
 		/**
@@ -52,6 +52,6 @@ class WooCommerce_RRP {
 /**
  * Instantiate the class
  *
- * @since 2.0.0
+ * @since 1.7.0
  */
 $woocommerce_rrp = new WooCommerce_RRP();

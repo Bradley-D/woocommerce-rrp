@@ -5,7 +5,7 @@
  * @author     Bradley Davis
  * @package    WooCommerce_RRP
  * @subpackage WooCommerce_RRP/public/partials
- * @since      2.0.0
+ * @since      1.7.0
  */
 
 if ( ! defined( 'ABSPATH' ) ) :
@@ -15,13 +15,13 @@ endif;
 /**
  * Public parent class that pulls everything together.
  *
- * @since 2.0.0
+ * @since 1.7.0
  */
 class WooCommerce_RRP_Render_Category {
 	/**
 	 * The Constructor.
 	 *
-	 * @since 2.0.0
+	 * @since 1.7.0
 	 */
 	public function __construct() {
 		$this->woo_rrp_public_category_activate();
@@ -30,7 +30,7 @@ class WooCommerce_RRP_Render_Category {
 	/**
 	 * Add all filter type actions.
 	 *
-	 * @since 2.0
+	 * @since 1.7.0
 	 */
 	public function woo_rrp_public_category_activate() {
 		if ( ! is_admin() ) :
@@ -80,6 +80,6 @@ class WooCommerce_RRP_Render_Category {
 /**
  * Instantiate the class
  *
- * @since 2.0.0
+ * @since 1.7.0
  */
 $woocommerce_rrp_render_category = new WooCommerce_RRP_Render_Category();

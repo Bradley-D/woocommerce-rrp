@@ -2,8 +2,8 @@
 Contributors: Brad Davis
 Tags: woocommerce, woocommerce-price, wc-admin, woocommerce-admin, woocommerce-product-settings, admin, wp-admin, wordpress-admin
 Requires at least: 4.0
-Tested up to: 4.9.8
-Stable tag: 2.0.0
+Tested up to: 5.0.0
+Stable tag: 1.7.0
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -86,10 +86,10 @@ No, You will need to tidy this up yourself using a little CSS styling.
 
 == Changelog ==
 
-= 2.0.0 =
+= 1.7.0 =
 * WPCS refactor
-* Tested on WordPress 4.9.8
-* Tested on WooCommerce 3.5.1
+* Tested on WordPress 5.0.0
+* Tested on WooCommerce 3.5.2
 
 = 1.6 =
 * Added translation functions on user input strings

@@ -5,7 +5,7 @@
  * @author     Bradley Davis
  * @package    WooCommerce_RRP
  * @subpackage WooCommerce_RRP/admin
- * @since      2.0.0
+ * @since      1.7.0
  */
 
 if ( ! defined( 'ABSPATH' ) ) :
@@ -21,7 +21,7 @@ class WooCommerce_RRP_Admin {
 	/**
 	 * The Constructor.
 	 *
-	 * @since 2.0
+	 * @since 1.7.0
 	 */
 	public function __construct() {
 		$this->woo_rrp_admin_activate();
@@ -30,7 +30,7 @@ class WooCommerce_RRP_Admin {
 	/**
 	 * Add all filter type actions.
 	 *
-	 * @since 2.0
+	 * @since 1.7.0
 	 */
 	public function woo_rrp_admin_activate() {
 		add_filter( 'woocommerce_general_settings', array( $this, 'woo_rrp_input' ), 100, 1 );
@@ -97,6 +97,6 @@ class WooCommerce_RRP_Admin {
 /**
  * Instantiate the class
  *
- * @since 2.0.0
+ * @since 1.7.0
  */
 $woocommerce_rrp_admin = new WooCommerce_RRP_Admin();

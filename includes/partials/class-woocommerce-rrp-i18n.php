@@ -15,13 +15,13 @@ endif;
 /**
  * Define the internationalization functionality.
  *
- * @since 2.0.0
+ * @since 1.7.0
  */
 class WooCommerce_RRP_I18n {
 	/**
 	 * The Constructor.
 	 *
-	 * @since 2.0
+	 * @since 1.7.0
 	 */
 	public function __construct() {
 		$this->woo_rrp_i18n_activate();
@@ -30,7 +30,7 @@ class WooCommerce_RRP_I18n {
 	/**
 	 * Add all filter type actions.
 	 *
-	 * @since 2.0
+	 * @since 1.7.0
 	 */
 	public function woo_rrp_i18n_activate() {
 		add_action( 'plugins_loaded', array( $this, 'woo_rrp_i18n_textdomain' ) );
@@ -54,6 +54,6 @@ class WooCommerce_RRP_I18n {
 /**
  * Instantiate the class
  *
- * @since 2.0.0
+ * @since 1.7.0
  */
 $woocommerce_rrp_i18n = new WooCommerce_RRP_I18n();
