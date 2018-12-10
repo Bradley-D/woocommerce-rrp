@@ -53,7 +53,7 @@ class WooCommerce_RRP_Render_Category {
 
 		if ( '' !== $price ) :
 
-			if ( 'yes' === $woo_rrp_archive_option && is_product_category() ) :
+			if ( 'yes' === $woo_rrp_archive_option && ( is_product_category() || is_shop() ) ) :
 
 				if ( $product->is_on_sale() ) :
 					$woo_rrp_replace = array(
