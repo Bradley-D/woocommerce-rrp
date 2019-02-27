@@ -2,8 +2,8 @@
 Contributors: Brad Davis
 Tags: woocommerce, woocommerce-price, wc-admin, woocommerce-admin, woocommerce-product-settings, admin, wp-admin, wordpress-admin
 Requires at least: 4.0
-Tested up to: 5.0.0
-Stable tag: 1.7.0
+Tested up to: 5.1
+Stable tag: 1.7.2
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -85,6 +85,13 @@ No, You will need to tidy this up yourself using a little CSS styling.
 6. Here you can see the arrows pointing to the text entered in "Product Price Text" and "Sale Price Text" on an archive.
 
 == Changelog ==
+
+= 1.7.2 =
+* Tested on WordPress 5.1
+* Tested on WooCommerce 3.5.5
+
+= 1.7.1 =
+* Tested on WooCommerce 3.5.3
 
 = 1.7.0 =
 * WPCS refactor
