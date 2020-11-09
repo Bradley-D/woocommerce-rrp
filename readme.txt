@@ -3,7 +3,7 @@ Contributors: Brad Davis
 Tags: woocommerce, woocommerce-price, wc-admin, woocommerce-admin, woocommerce-product-settings, admin, wp-admin, wordpress-admin
 Requires at least: 4.0
 Tested up to: 5.5.1
-Stable tag: 1.7.4
+Stable tag: 1.7.5
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -85,6 +85,10 @@ No, You will need to tidy this up yourself using a little CSS styling.
 6. Here you can see the arrows pointing to the text entered in "Product Price Text" and "Sale Price Text" on an archive.
 
 == Changelog ==
+
+= 1.7.5 =
+* Updated single product to not output product price text field when price is empty
+* Updated category view to not output product price text field when price is empty
 
 = 1.7.4 =
 * Tested on WordPress 5.5.1

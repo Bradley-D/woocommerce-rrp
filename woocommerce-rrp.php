@@ -3,7 +3,7 @@
  * Plugin Name: WooCommerce RRP
  * Plugin URI: http://bradley-davis.com/wordpress-plugins/woocommerce-rrp/
  * Description: WooCommerce RRP allows users to add text before the regular price and sale price of a product from within WooCommerce General settings.
- * Version: 1.7.4
+ * Version: 1.7.5
  * Author: Bradley Davis
  * Author URI: http://bradley-davis.com
  * License: GPL3
